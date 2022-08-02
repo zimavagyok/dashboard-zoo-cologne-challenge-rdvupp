@@ -1,0 +1,18 @@
+{
+    "prettier.enable": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[js]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[ts]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    }
+}

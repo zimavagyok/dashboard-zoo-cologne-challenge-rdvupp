@@ -1,0 +1,16 @@
+// Vitest Snapshot v1
+
+exports[`TheAnimalTable > mounts and is still the same 1`] = `
+"<table class=\\"table-auto\\" data-v-5893c39c=\\"\\">
+  <thead data-v-5893c39c=\\"\\">
+    <tr data-v-5893c39c=\\"\\">
+      <th data-v-5893c39c=\\"\\">Index</th>
+      <th data-v-5893c39c=\\"\\">Species</th>
+      <th data-v-5893c39c=\\"\\">Gender</th>
+      <th data-v-5893c39c=\\"\\">Age (yrs)</th>
+      <th data-v-5893c39c=\\"\\">Weight (kg)</th>
+    </tr>
+  </thead>
+  <tbody data-v-5893c39c=\\"\\"></tbody>
+</table>"
+`;

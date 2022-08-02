@@ -1,0 +1,5 @@
+dist
+public
+
+# ignore all lint errors by the /storybook-static folder
+**/storybook-static

@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`TheComponent > mounts and is still the same 1`] = `
+"<div class=\\"m-1 text-xs\\"><label class=\\"block\\">Super cool input:</label>
+  <form><span class=\\"relative\\"><input type=\\"text\\" class=\\"border rounded p-1 outline-none\\" placeholder=\\"Your name...\\" autofocus=\\"\\"></span><button type=\\"submit\\" class=\\"bg-blue-200 rounded p-1\\"> Submit </button></form>
+  <div class=\\"mt-2\\"><a style=\\"cursor: pointer;\\" to=\\"/\\"> Example link </a></div>
+</div>"
+`;

@@ -1,0 +1,45 @@
+{
+  "private": true,
+  "engines": {
+    "node": "16.14.2",
+    "npm": "8.5.0"
+  },
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs",
+    "lint": "npm-run-all lint:*",
+    "lint:types": "nuxi typecheck",
+    "lint:style": "eslint .",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "prepare": "husky install",
+    "test-for-reviewer": "npm run build && npm run test",
+    "hello": "echo 'Hi IT Director! Open TASKS.md to get started'"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.23.0",
+    "@babel/core": "^7.17.10",
+    "@faker-js/faker": "^6.3.1",
+    "@vitejs/plugin-vue": "^2.3.2",
+    "@vue/test-utils": "^2.0.0-rc.18",
+    "autoprefixer": "^10.4.4",
+    "babel-loader": "^8.2.4",
+    "c8": "^7.11.0",
+    "eslint": "^8.12.0",
+    "husky": "^7.0.4",
+    "jsdom": "^19.0.0",
+    "lint-staged": "^12.3.7",
+    "npm-run-all": "^4.1.5",
+    "nuxt": "npm:nuxt3@3.0.0-rc.2-27526179.f74a523",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.6.4",
+    "vitest": "^0.10.2",
+    "vue-loader": "^17.0.0",
+    "vue-tsc": "^0.34.11"
+  },
+  "lint-staged": {
+    "*{.js,.ts,.vue}": "eslint --fix"
+  }
+}
