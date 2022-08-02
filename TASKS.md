@@ -40,12 +40,12 @@ Solution:
 
 - First I checked package.json, so I could see what scripts I have to check the health
 - The projects uses 'vitest' for testing, so I ran the 'npm run test' command which showed 2 failed test cases
-    - First failed test case shows that the 'composables/helper.ts' age calculation function doesn't round up the result
-    - Second failed test case shows that there is a typo at 'api/animal.get.ts' 7th row
+  - First failed test case shows that the 'composables/helper.ts' age calculation function doesn't round up the result
+  - Second failed test case shows that there is a typo at 'api/animal.get.ts' 7th row
 - I ran 'npm run lint' to check for any other problems with the source code
--    It showed again the typo at 'composables/helper.ts'
+- It showed again the typo at 'composables/helper.ts'
 - I looked through the main functions - because of the small number of files - for any other errors
-    - I found an alert at the 'app.vue' file which shouldn't be there
+  - I found an alert at the 'app.vue' file which shouldn't be there
 - I ran 'npm run lint:style' which showed format errors
 
 ### Task 2: Get the basics running again
@@ -152,9 +152,10 @@ Navigate to the CLI and press CTRL+C to stop the app.
 There's a failing test that for the age calculation helper. Can you figure out what is broken in the implementation or the test it is and resolve the problem? All zookeepers are really interested in what is going on here.
 
 Solution:
+
 - The helper function gives back the wrong result when it gets the current date so I have to check the variable 'differenceInMilliseconds' value
-    - If it is 0, then I have to return 1, because we always round up the age of the animal
-    - Otherwise we have to return the calculated value
+  - If it is 0, then I have to return 1, because we always round up the age of the animal
+  - Otherwise we have to return the calculated value
 - For the solution I created a ternary operator at the return value to check the value of the 'differenceInMilliseconds' variable and return the correct value
 - After the change the test runs succesfully
 
@@ -171,11 +172,34 @@ Please fix the two above problems and outline what was necessarry to do so.
 
 Solution:
 
+- The missing column was fixed with extending the HTML code of the table
+  - Added a new header for the Name attribute (<th>Name</th>)
+  - Added a new cell for the Name attribute (<td>Name</td>)
+  - Changed the snapshot to match the extended table to the description
+- After the above changes the table showed the Name attribute properly
+
+- The sort was fixed with changing the sorter functions lambda function, because the original one used the weight attribute
+  - Changed the function so the predicate function gives back 1 if the first parameter is ahead in the alphabet and -1 if not
+- After the above change the table became sorted by name
+
+- To show the age in years instead of the birthdate I changed the 'birthdate' cell to call the function 'calculateAgeInYears' with the parameter birthdate
+  - First I got an error because the parameter didn't pass as a Date, so the helper function couldn't work with it
+  - As the functions parameter I converted the birthdate to date with 'new Date(birthdate)' therefore the function worked properly
+
 ### Task 6: UI Feature 1
 
 The zookeepers want to be able to see all details of an animal. Please create such a view that allows them to do so, outline anything about your process while adding the view below. The zookeepers didn't have time for more information, sorry. They'll surely be glad to criticize the first version intensly though and will want to know why you went for the approach you chose.
 
-// Your solution
+Solution:
+
+- I had to check what are the characteristics of the animal
+  - The original table already contained 6 of these, therefore I decided to extend it with the missing ones
+  - Also if all the data is in one place and not in different pages the zookeepers can access them easier
+  - There is only a few data about each animal so this table can easily show them
+- I created two new table header to match the description of the animals (+height, +favouriteFruit)
+- I created two new table cell to show the missing properties
+- Extended the attributes used in v-for, so I the new data can appear
+- Changed the snapshot to match the structure of the new table, so it can be easily tested with 'npm run test'
 
 ### Task 7: Logic Feature
 
@@ -191,7 +215,14 @@ To calculate the food an animal needs in kilograms in 1 day, the zookeepers use 
 4. If the animal is male, add 20 %
 5. If the animal is a fish: The required food is 0 kg
 
-// Your solution
+Solution:
+
+- Following the above requirements I made a calculator function in 'composables/helper.ts' file called 'calculateFoodInKgs'
+- Created a new test case in 'composables/helpers.test.ts' to test the new function
+  - Used 'npm run test' to check if the code is working fine
+- Created a new file at 'helpers' called foodForNextMonth.ts
+  - Created a function called 'calculateFoodForNextMonth' which iterates through the given array and gives back the total amount of food in kgs
+  - Calculates the count of days in the next month and multiplies the daily amount of food with this number, so we get the amount for the whole month
 
 ### Task 8: Plan New Feature
 
@@ -217,10 +248,65 @@ Please create a breakdown for this feature. You can focus on aspects like: What 
 
 Don't spend more thatn 15-30 minutes here - planning like this can quickly become quite complex and we want to prevent this challenge taking too much of your time!
 
-// Your solution
+Solution:
+
+- The main goal of this feature is to create a function where the zooplanners can overview the feeding process and the food stock
+  - For each animal plan a day and what food it will eat
+  - Calculate the amount of food
+  - An overview of the upcoming tasks grouped by day
+- UI/UX:
+
+  - A navigation menu has to be added to the app so the planner can navigate between the different pages
+  - Choosing an animal can be done in two ways:
+    - The main table can be extended with a button called 'Plan'. Pressing it a modal window would appear where the planner could plan the feeding of the specific animal.
+    - On a new page called 'Feed plan' - which can be accessed from then navigation menu - the planner could select the animal from a dropdown list. After the selection a calendar would appear where the planner can plan the feeding of the specific animal.
+  - The planning in the calendar could be done like the planner presses on a day and after that a modal window appear.
+    - There the planner could select the food and under that the required amount would appear
+    - With a Save or Delete button the planner can decide if the plan should be saved
+  - A new page has to be added where a calendar or a list would appear day by day
+    - There the animal's name, the food and the required amount of food would appear so the planner can see what coming up next
+
+- Logic:
+
+  - The navigation menu's logic has to be coded
+  - The main table should be extended with a new button ('Feed')
+  - Creating the modal window and the appearing
+  - The plan has to be saved or deleted, both requires implementation
+  - A new page has to be created, where a list or a calendar should appear
+    - The saved plans has to appear there in the following format: name, fruit, amount of food
+  - Deleting a plan that comes up should be allowed, because mistakes can be made
+
+- Plan:
+
+  - First the UI/UX plans has to be done, because without them an implementation can not be done
+  - After the UI/UX plans are final, we have to create the codes for these pages, but only the layout
+  - When the layout is final, then the logic behind the pages can be done separatly
+  - Tests needed to validate the pages functionality and appearing
+
+- Tests:
+
+  - The tests has to be made before the implementation of the functions
+  - The created logic has to be unit tested with different scenarios
+  - The created pages appaerance has to be unit tested with different scenarios
+
+- Questions:
+  - Do the animals get their food once a day or the required amount has to be split?
+  - Do animals of the same species and properties get the same amount of food? - This way they could be managed together
+  - Do the animals eat only their favourite fruit or they can get anything?
+  - Do we need an overview of the total amount of food for the next month or we need it also in a daily basis?
 
 ### Task 9: Finish the documentation
 
 Revisit docs from step 3, see if you want to add anything. Also think about bonuses. Add a general comment about anything (inside the universe of the challenge or out of it) if you want to.
 
-// Your solution
+## Test cases
+
+Before a new feature is getting implemented always create a unit test for the function. This way the function wouldn't malfunction and edge cases can be tested.
+
+## Comments
+
+Always comment the code! Programming is a teamwork, so other developers have to understand your code too. The comments should be short and straightforward.
+
+## Extending the functionality of the app
+
+First the UI/UX design has to be made. After that the layout has to be coded, which should be followed by the test cases for the functions that will be implemented. Then the functions for the new features should be implemented. For the last step the code has to be tested to validate its functionality.

@@ -6,9 +6,12 @@ exports[`TheAnimalTable > mounts and is still the same 1`] = `
     <tr data-v-5893c39c=\\"\\">
       <th data-v-5893c39c=\\"\\">Index</th>
       <th data-v-5893c39c=\\"\\">Species</th>
+      <th data-v-5893c39c=\\"\\">Name</th>
       <th data-v-5893c39c=\\"\\">Gender</th>
       <th data-v-5893c39c=\\"\\">Age (yrs)</th>
       <th data-v-5893c39c=\\"\\">Weight (kg)</th>
+      <th data-v-5893c39c=\\"\\">Height (m)</th>
+      <th data-v-5893c39c=\\"\\">Favourite Fruit</th>
     </tr>
   </thead>
   <tbody data-v-5893c39c=\\"\\"></tbody>
